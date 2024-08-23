@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TrabajosPracticos45
+namespace Practico5
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace TrabajosPracticos45
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Formulario());
+            Application.Run(new Form1());
         }
     }
 }

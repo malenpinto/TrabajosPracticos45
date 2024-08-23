@@ -1,6 +1,6 @@
 ﻿namespace TrabajosPracticos45
 {
-    partial class Form1
+    partial class Formulario
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -106,6 +106,7 @@
             this.BNumPares.TabIndex = 7;
             this.BNumPares.Text = "Números Pares";
             this.BNumPares.UseVisualStyleBackColor = true;
+            this.BNumPares.Click += new System.EventHandler(this.BNumPares_Click);
             // 
             // BNumPrimos
             // 
@@ -116,6 +117,7 @@
             this.BNumPrimos.TabIndex = 8;
             this.BNumPrimos.Text = "Números Primos";
             this.BNumPrimos.UseVisualStyleBackColor = true;
+            this.BNumPrimos.Click += new System.EventHandler(this.BNumPrimos_Click);
             // 
             // BNumImpares
             // 
@@ -126,6 +128,7 @@
             this.BNumImpares.TabIndex = 9;
             this.BNumImpares.Text = "Números Impares";
             this.BNumImpares.UseVisualStyleBackColor = true;
+            this.BNumImpares.Click += new System.EventHandler(this.BNumImpares_Click);
             // 
             // TBListaNumeros
             // 
@@ -136,7 +139,7 @@
             this.TBListaNumeros.Size = new System.Drawing.Size(363, 340);
             this.TBListaNumeros.TabIndex = 10;
             // 
-            // Form1
+            // Formulario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,7 +154,7 @@
             this.Controls.Add(this.TDesde);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "Formulario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulario4";
             this.ResumeLayout(false);
