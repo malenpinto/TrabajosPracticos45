@@ -16,7 +16,8 @@ namespace TrabajosPracticos45
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Formulario());
+            //Application.Run(new Formulario());
+            Application.Run(new Formulario2());
         }
     }
 }
