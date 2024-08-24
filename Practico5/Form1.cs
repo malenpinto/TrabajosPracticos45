@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,24 @@ namespace Practico5
         public Form1()
         {
             InitializeComponent();
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.RowTemplate.Height = 80;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Cargar una imagen predeterminada en el PictureBox
+            try
+            {
+                string rutaPredeterminada = Path.Combine(Application.StartupPath, "Fotos", "Avatar1.jpg");
+                pictureBox1.Image = Image.FromFile(rutaPredeterminada);
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show("Imagen predeterminada no encontrada: " + ex.Message);
+            }
+
+           
         }
 
         private void BFoto_Click(object sender, EventArgs e)
@@ -34,6 +53,163 @@ namespace Practico5
 
                 // Mostrar la ruta de la imagen en el TextBox TxtFoto
                 TFoto.Text = rutaImagen;
+            }
+        }
+
+        private void BAgregar_Click(object sender, EventArgs e)
+        {
+            // Validar que el nombre y apellido sean correctos
+            FormatearTexto(TNombre);
+            FormatearTexto(TApellido);
+
+            //Validacion de Saldo 
+            decimal saldo;
+            if (string.IsNullOrWhiteSpace(TSaldo.Text) || !decimal.TryParse(TSaldo.Text, out saldo) || saldo < 0)
+            {
+                MessageBox.Show("Por favor, ingrese un saldo válido (mayor o igual a 0).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TSaldo.Focus();
+            }
+
+            //Validacion  de Fecha de Nacimiento
+            DateTime fechaNacimiento = dateTimePicker1.Value;
+
+            if (fechaNacimiento > DateTime.Now)
+            {
+                MessageBox.Show("La fecha de nacimiento no puede ser una fecha futura.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dateTimePicker1.Focus();
+            }
+
+            //Validacion Sexo 
+            if (!RBHombre.Checked && !RBMujer.Checked)
+            {
+                MessageBox.Show("Por favor, seleccione un sexo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Validar si todos los campos cumplen las condiciones
+            if (CamposValidos())
+            {
+                string apellido = TApellido.Text;
+                string nombre = TNombre.Text;
+                fechaNacimiento = dateTimePicker1.Value;
+                string sexo = RBHombre.Checked ? "Hombre" : "Mujer";
+                saldo = Convert.ToDecimal(TSaldo.Text);
+                string rutaFoto = string.IsNullOrWhiteSpace(TFoto.Text)
+                                  ? Path.Combine(Application.StartupPath, "Fotos", "Avatar1.jpg")
+                                  : TFoto.Text;
+
+                int rowIndex = dataGridView1.Rows.Add();
+                DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+                row.Cells["Apellido"].Value = apellido;
+                row.Cells["Nombre"].Value = nombre;
+                row.Cells["FechaNacimiento"].Value = fechaNacimiento.ToShortDateString();
+                row.Cells["Sexo"].Value = sexo;
+                row.Cells["Saldo"].Value = saldo;
+                row.Cells["Foto"].Value = Image.FromFile(rutaFoto);
+                row.Cells["Ruta"].Value = rutaFoto;
+
+                if (saldo < 50)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+
+                LimpiarFormulario();
+            }
+        }
+
+        private bool CamposValidos()
+        {
+            // Validar si todos los campos cumplen las condiciones
+            decimal saldo;
+            bool nombreValido = !string.IsNullOrWhiteSpace(TNombre.Text) && TNombre.Text.Length > 1;
+            bool apellidoValido = !string.IsNullOrWhiteSpace(TApellido.Text) && TApellido.Text.Length > 1;
+            bool saldoValido = !string.IsNullOrWhiteSpace(TSaldo.Text) && decimal.TryParse(TSaldo.Text, out saldo) && saldo >= 0;
+            bool fechaValida = dateTimePicker1.Value <= DateTime.Now;
+            bool sexoValido = RBHombre.Checked || RBMujer.Checked;
+
+            return nombreValido && apellidoValido && saldoValido && fechaValida && sexoValido;
+        }
+
+        private void LimpiarFormulario()
+        {
+            TNombre.Clear();
+            TApellido.Clear();
+            TSaldo.Clear();
+            TFoto.Clear();
+            RBHombre.Checked = false;
+            RBMujer.Checked = false;
+            dateTimePicker1.Value = DateTime.Now;
+
+            // Mantener la imagen predeterminada
+            if (string.IsNullOrWhiteSpace(TFoto.Text))
+            {
+                pictureBox1.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Fotos", "Avatar1.jpg"));
+            }
+        }
+
+        private void FormatearTexto(TextBox textBox)
+        {
+            // Validar si el TextBox tiene contenido
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                return;
+            }
+
+            // Obtener el texto del TextBox
+            string texto = textBox.Text;
+
+            // Validar si el texto es alfabético
+            if (!texto.All(char.IsLetter))
+            {
+                MessageBox.Show("Por favor, ingrese solo letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox.Text = string.Empty; // Limpiar el TextBox si contiene caracteres no alfabéticos
+                return;
+            }
+
+            // Formatear el texto: primera letra en mayúscula, resto en minúscula
+            textBox.Text = char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
+
+            // Colocar el cursor al final del texto
+            textBox.SelectionStart = textBox.Text.Length;
+        }
+
+        private void TNombre_Leave(object sender, EventArgs e)
+        {
+            FormatearTexto((TextBox)sender);
+        }
+
+        private void TApellido_Leave(object sender, EventArgs e)
+        {
+            FormatearTexto((TextBox)sender);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Verificar si se hizo clic en la columna de Eliminar y que el índice de la fila sea válido
+            if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                // Verificar si la fila no es la nueva fila sin confirmar
+                if (!dataGridView1.Rows[e.RowIndex].IsNewRow)
+                {
+                    // Confirmar si el usuario desea eliminar el registro
+                    DialogResult resultado = MessageBox.Show("¿Desea eliminar este registro?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        // Desactivar temporalmente el manejo del evento para evitar múltiples mensajes
+                        dataGridView1.CellContentClick -= dataGridView1_CellContentClick;
+
+                        // Eliminar la fila seleccionada
+                        dataGridView1.Rows.RemoveAt(e.RowIndex);
+
+                        // Volver a activar el manejo del evento
+                        dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se puede eliminar una fila nueva sin confirmar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
     }
