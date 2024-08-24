@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace TrabajosPracticos45
+namespace Practico4
 {
     public partial class Formulario2 : Form
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TrabajosPracticos45
+namespace Practico4
 {
     public partial class Formulario : Form
     {

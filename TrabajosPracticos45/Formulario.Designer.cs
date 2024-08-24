@@ -1,4 +1,4 @@
-﻿namespace TrabajosPracticos45
+﻿namespace Practico4
 {
     partial class Formulario
     {
