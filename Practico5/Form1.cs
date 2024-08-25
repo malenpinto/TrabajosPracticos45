@@ -158,16 +158,30 @@ namespace Practico5
             // Obtener el texto del TextBox
             string texto = textBox.Text;
 
-            // Validar si el texto es alfabético
-            if (!texto.All(char.IsLetter))
+            // Validar si el texto es alfabético (permitiendo espacios y guiones)
+            if (!texto.All(c => char.IsLetter(c) || c == ' ' || c == '-'))
             {
-                MessageBox.Show("Por favor, ingrese solo letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Por favor, ingrese solo letras, espacios y guiones.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox.Text = string.Empty; // Limpiar el TextBox si contiene caracteres no alfabéticos
                 return;
             }
 
-            // Formatear el texto: primera letra en mayúscula, resto en minúscula
-            textBox.Text = char.ToUpper(texto[0]) + texto.Substring(1).ToLower();
+            // Dividir el texto en palabras
+            string[] palabras = texto.Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
+
+            // Convertir cada palabra a mayúscula en la primera letra y minúscula en las demás
+            for (int i = 0; i < palabras.Length; i++)
+            {
+                palabras[i] = char.ToUpper(palabras[i][0]) + palabras[i].Substring(1).ToLower();
+            }
+
+            // Reconstruir el texto con las palabras formateadas, respetando los separadores originales (espacios y guiones)
+            string textoFormateado = string.Join(" ", texto.Split(' ')
+                                    .Select(s => string.Join("-", s.Split('-')
+                                    .Select(p => char.ToUpper(p[0]) + p.Substring(1).ToLower()))));
+
+            // Asignar el texto formateado al TextBox
+            textBox.Text = textoFormateado;
 
             // Colocar el cursor al final del texto
             textBox.SelectionStart = textBox.Text.Length;
