@@ -197,6 +197,9 @@ namespace Practico4
             // Cambiar el tipo de gráfico según el tipo de números seleccionado
             switch (tipo)
             {
+                case "GenerarFuncion":
+                    serie.ChartType = SeriesChartType.Area; // Gráfico de área como ejemplo para "Generar Función"
+                    break;
                 case "Pares":
                     serie.ChartType = SeriesChartType.Column; // Gráfico de columnas para números pares
                     break;
@@ -204,10 +207,7 @@ namespace Practico4
                     serie.ChartType = SeriesChartType.Line; // Gráfico de líneas para números impares
                     break;
                 case "Primos":
-                    serie.ChartType = SeriesChartType.Point; // Gráfico de puntos para números primos
-                    break;
-                case "GenerarFuncion":
-                    serie.ChartType = SeriesChartType.Area; // Gráfico de área como ejemplo para "Generar Función"
+                    serie.ChartType = SeriesChartType.Pie; // Gráfico de torta para números primos
                     break;
                 default:
                     serie.ChartType = SeriesChartType.Column; // Gráfico por defecto

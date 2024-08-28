@@ -23,7 +23,7 @@ namespace Practico5
         private void Form1_Load(object sender, EventArgs e)
         {
             // Cargar una imagen predeterminada en el PictureBox
-            try
+            /*try
             {
                 string rutaPredeterminada = Path.Combine(Application.StartupPath, "Fotos", "Avatar1.jpg");
                 pictureBox1.Image = Image.FromFile(rutaPredeterminada);
@@ -31,7 +31,7 @@ namespace Practico5
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("Imagen predeterminada no encontrada: " + ex.Message);
-            }
+            }*/
 
            
         }
