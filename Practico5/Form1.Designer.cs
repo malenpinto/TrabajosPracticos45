@@ -66,7 +66,7 @@
             // 
             this.pictureBox1.Image = global::Practico5.Properties.Resources.Avatar1;
             this.pictureBox1.Location = new System.Drawing.Point(494, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(274, 339);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -91,7 +91,7 @@
             this.panel1.Controls.Add(this.LApellido);
             this.panel1.Controls.Add(this.LNombre);
             this.panel1.Location = new System.Drawing.Point(64, 10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(392, 339);
             this.panel1.TabIndex = 1;
@@ -99,7 +99,7 @@
             // TFoto
             // 
             this.TFoto.Location = new System.Drawing.Point(121, 237);
-            this.TFoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TFoto.Margin = new System.Windows.Forms.Padding(2);
             this.TFoto.Name = "TFoto";
             this.TFoto.Size = new System.Drawing.Size(241, 20);
             this.TFoto.TabIndex = 13;
@@ -110,7 +110,7 @@
             this.RBMujer.Font = new System.Drawing.Font("Papyrus", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RBMujer.ForeColor = System.Drawing.Color.White;
             this.RBMujer.Location = new System.Drawing.Point(206, 153);
-            this.RBMujer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RBMujer.Margin = new System.Windows.Forms.Padding(2);
             this.RBMujer.Name = "RBMujer";
             this.RBMujer.Size = new System.Drawing.Size(70, 29);
             this.RBMujer.TabIndex = 12;
@@ -124,7 +124,7 @@
             this.RBHombre.Font = new System.Drawing.Font("Papyrus", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RBHombre.ForeColor = System.Drawing.Color.White;
             this.RBHombre.Location = new System.Drawing.Point(121, 153);
-            this.RBHombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RBHombre.Margin = new System.Windows.Forms.Padding(2);
             this.RBHombre.Name = "RBHombre";
             this.RBHombre.Size = new System.Drawing.Size(89, 29);
             this.RBHombre.TabIndex = 11;
@@ -135,7 +135,7 @@
             // TSaldo
             // 
             this.TSaldo.Location = new System.Drawing.Point(121, 194);
-            this.TSaldo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TSaldo.Margin = new System.Windows.Forms.Padding(2);
             this.TSaldo.Name = "TSaldo";
             this.TSaldo.Size = new System.Drawing.Size(241, 20);
             this.TSaldo.TabIndex = 10;
@@ -145,7 +145,7 @@
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(206, 114);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(95, 20);
             this.dateTimePicker1.TabIndex = 9;
@@ -153,7 +153,7 @@
             // TApellido
             // 
             this.TApellido.Location = new System.Drawing.Point(121, 70);
-            this.TApellido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TApellido.Margin = new System.Windows.Forms.Padding(2);
             this.TApellido.Name = "TApellido";
             this.TApellido.Size = new System.Drawing.Size(241, 20);
             this.TApellido.TabIndex = 8;
@@ -162,7 +162,7 @@
             // TNombre
             // 
             this.TNombre.Location = new System.Drawing.Point(121, 25);
-            this.TNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TNombre.Margin = new System.Windows.Forms.Padding(2);
             this.TNombre.Name = "TNombre";
             this.TNombre.Size = new System.Drawing.Size(241, 20);
             this.TNombre.TabIndex = 7;
@@ -175,7 +175,7 @@
             this.BAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BAgregar.Image")));
             this.BAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BAgregar.Location = new System.Drawing.Point(133, 268);
-            this.BAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.BAgregar.Name = "BAgregar";
             this.BAgregar.Size = new System.Drawing.Size(127, 59);
             this.BAgregar.TabIndex = 6;
@@ -187,7 +187,7 @@
             // BFoto
             // 
             this.BFoto.Location = new System.Drawing.Point(22, 232);
-            this.BFoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BFoto.Margin = new System.Windows.Forms.Padding(2);
             this.BFoto.Name = "BFoto";
             this.BFoto.Size = new System.Drawing.Size(78, 28);
             this.BFoto.TabIndex = 5;
@@ -273,7 +273,7 @@
             this.Foto,
             this.Ruta});
             this.dataGridView1.Location = new System.Drawing.Point(9, 353);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 60;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -357,7 +357,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Formulario con Grid";
