@@ -16,7 +16,7 @@ namespace Practico5
         public Form1()
         {
             InitializeComponent();
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellContentClick += DataGridView1_CellContentClick;
             dataGridView1.RowTemplate.Height = 80;
         }
 
@@ -39,8 +39,10 @@ namespace Practico5
         private void BFoto_Click(object sender, EventArgs e)
         {
             // Configurar el OpenFileDialog para seleccionar imágenes
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp"
+            };
 
             // Mostrar el cuadro de diálogo y verificar si el usuario selecciona un archivo
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -63,8 +65,7 @@ namespace Practico5
             FormatearTexto(TApellido);
 
             //Validacion de Saldo 
-            decimal saldo;
-            if (string.IsNullOrWhiteSpace(TSaldo.Text) || !decimal.TryParse(TSaldo.Text, out saldo) || saldo < 0)
+            if (string.IsNullOrWhiteSpace(TSaldo.Text) || !decimal.TryParse(TSaldo.Text, out decimal saldo) || saldo < 0)
             {
                 MessageBox.Show("Por favor, ingrese un saldo válido (mayor o igual a 0).", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 TSaldo.Focus();
@@ -120,10 +121,9 @@ namespace Practico5
         private bool CamposValidos()
         {
             // Validar si todos los campos cumplen las condiciones
-            decimal saldo;
             bool nombreValido = !string.IsNullOrWhiteSpace(TNombre.Text) && TNombre.Text.Length > 1;
             bool apellidoValido = !string.IsNullOrWhiteSpace(TApellido.Text) && TApellido.Text.Length > 1;
-            bool saldoValido = !string.IsNullOrWhiteSpace(TSaldo.Text) && decimal.TryParse(TSaldo.Text, out saldo) && saldo >= 0;
+            bool saldoValido = !string.IsNullOrWhiteSpace(TSaldo.Text) && decimal.TryParse(TSaldo.Text, out decimal saldo) && saldo >= 0;
             bool fechaValida = dateTimePicker1.Value <= DateTime.Now;
             bool sexoValido = RBHombre.Checked || RBMujer.Checked;
 
@@ -197,7 +197,7 @@ namespace Practico5
             FormatearTexto((TextBox)sender);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar si se hizo clic en la columna de Eliminar y que el índice de la fila sea válido
             if (e.ColumnIndex == dataGridView1.Columns["Eliminar"].Index && e.RowIndex >= 0)
@@ -211,13 +211,13 @@ namespace Practico5
                     if (resultado == DialogResult.Yes)
                     {
                         // Desactivar temporalmente el manejo del evento para evitar múltiples mensajes
-                        dataGridView1.CellContentClick -= dataGridView1_CellContentClick;
+                        dataGridView1.CellContentClick -= DataGridView1_CellContentClick;
 
                         // Eliminar la fila seleccionada
                         dataGridView1.Rows.RemoveAt(e.RowIndex);
 
                         // Volver a activar el manejo del evento
-                        dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+                        dataGridView1.CellContentClick += DataGridView1_CellContentClick;
                     }
                 }
                 else
